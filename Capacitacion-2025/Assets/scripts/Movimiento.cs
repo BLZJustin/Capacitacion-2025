@@ -5,6 +5,7 @@ using UnityEngine;
 public class Movimiento : MonoBehaviour
 {
     private Rigidbody2D rb2D;
+    private Animator animacion;
     [Header("Movimiento")]
     private float movimientoHorizontal = 0f;
     [SerializeField] private float velMovi;
@@ -15,12 +16,15 @@ public class Movimiento : MonoBehaviour
     private void Start()
     {
         rb2D = GetComponent<Rigidbody2D>();
+        animacion = GetComponent<Animator>();
     }
 
     // Update is called once per frame
     private void Update()
     {
         movimientoHorizontal = Input.GetAxisRaw("Horizontal") * velMovi;
+        animacion.SetFloat("Horizontal", Mathf.Abs(movimientoHorizontal));
+        animacion.SetFloat("VelocidadY", rb2D.velocity.y);
         if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.Space))
         {
             salto = true;
@@ -72,6 +76,7 @@ public class Movimiento : MonoBehaviour
     private void FixedUpdate()
     {
         Mover(movimientoHorizontal * Time.fixedDeltaTime);
+        animacion.SetBool("enSuelo", enSuelo);
         enSuelo = Physics2D.OverlapBox(controladorSuelo.position, dimensionCaja, 0f, queEsSuelo);
         Jump(salto);
         salto = false;
@@ -82,5 +87,6 @@ public class Movimiento : MonoBehaviour
         Gizmos.color = Color.black;
         Gizmos.DrawWireCube(controladorSuelo.position, dimensionCaja);
     }
+
 
 }
