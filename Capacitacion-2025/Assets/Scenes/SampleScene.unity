@@ -133,7 +133,7 @@ GameObject:
   - component: {fileID: 278646330}
   - component: {fileID: 278646332}
   - component: {fileID: 278646331}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: piso (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -387,7 +387,7 @@ GameObject:
   - component: {fileID: 515330345}
   - component: {fileID: 515330347}
   - component: {fileID: 515330346}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: piso (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -736,7 +736,7 @@ GameObject:
   - component: {fileID: 659768731}
   - component: {fileID: 659768733}
   - component: {fileID: 659768732}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: piso (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1024,7 +1024,7 @@ GameObject:
   - component: {fileID: 697618875}
   - component: {fileID: 697618877}
   - component: {fileID: 697618876}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: piso (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1143,6 +1143,37 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1228442006
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1228442007}
+  m_Layer: 0
+  m_Name: ControladorSuelo
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1228442007
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1228442006}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.003, y: -0.151, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1498269259}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1498269254
 GameObject:
   m_ObjectHideFlags: 0
@@ -1177,6 +1208,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   velMovi: 250
   suavizarMov: 0.5
+  JumpForce: 500
+  queEsSuelo:
+    serializedVersion: 2
+    m_Bits: 64
+  controladorSuelo: {fileID: 1228442007}
+  dimensionCaja: {x: 1.55, y: 0.5, z: 0}
+  enSuelo: 1
 --- !u!50 &1498269256
 Rigidbody2D:
   serializedVersion: 4
@@ -1203,7 +1241,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!60 &1498269257
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -1281,24 +1319,12 @@ PolygonCollider2D:
       - {x: -0.09009335, y: -0.11952268}
       - {x: -0.069905914, y: -0.12028191}
       - {x: -0.0702899, y: -0.14984919}
-      - {x: -0.06052975, y: -0.14993492}
-      - {x: -0.060299717, y: -0.15997998}
-      - {x: -0.039625496, y: -0.16002136}
-      - {x: -0.03949049, y: -0.15001908}
-      - {x: -0.029274786, y: -0.15003884}
-      - {x: -0.02980933, y: -0.14033873}
-      - {x: -0.019851843, y: -0.14016038}
-      - {x: -0.019733079, y: -0.13011725}
+      - {x: -0.029629689, y: -0.14983985}
+      - {x: -0.029599704, y: -0.12924318}
       - {x: 0.0292827, y: -0.13026632}
-      - {x: 0.029751034, y: -0.14972237}
-      - {x: 0.039292846, y: -0.14999539}
-      - {x: 0.039620273, y: -0.16013081}
-      - {x: 0.060279388, y: -0.15988812}
-      - {x: 0.060270287, y: -0.15005322}
-      - {x: 0.07001953, y: -0.1502626}
-      - {x: 0.07015381, y: -0.14002962}
-      - {x: 0.08034015, y: -0.13976039}
-      - {x: 0.08013136, y: -0.120018534}
+      - {x: 0.029628372, y: -0.15009041}
+      - {x: 0.069910206, y: -0.1506559}
+      - {x: 0.07037724, y: -0.120728396}
       - {x: 0.100718565, y: -0.12005958}
       - {x: 0.10055584, y: -0.1106167}
       - {x: 0.11025149, y: -0.11021862}
@@ -1381,7 +1407,8 @@ Transform:
   m_LocalPosition: {x: -4.18, y: 1.07, z: 0}
   m_LocalScale: {x: 6.3286147, y: 6.3286147, z: 6.3286147}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1228442007}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1525861966
@@ -1395,7 +1422,7 @@ GameObject:
   - component: {fileID: 1525861967}
   - component: {fileID: 1525861969}
   - component: {fileID: 1525861968}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: piso (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1525,7 +1552,7 @@ GameObject:
   - component: {fileID: 1721621046}
   - component: {fileID: 1721621045}
   - component: {fileID: 1721621043}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: piso
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1655,7 +1682,7 @@ GameObject:
   - component: {fileID: 1735004116}
   - component: {fileID: 1735004118}
   - component: {fileID: 1735004117}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: piso (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1785,7 +1812,7 @@ GameObject:
   - component: {fileID: 1739602104}
   - component: {fileID: 1739602106}
   - component: {fileID: 1739602105}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: piso (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1915,7 +1942,7 @@ GameObject:
   - component: {fileID: 2120809002}
   - component: {fileID: 2120809004}
   - component: {fileID: 2120809003}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: piso (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2041,6 +2068,6 @@ SceneRoots:
   - {fileID: 519420032}
   - {fileID: 619394802}
   - {fileID: 318076166}
-  - {fileID: 1498269259}
   - {fileID: 383527758}
   - {fileID: 670712350}
+  - {fileID: 1498269259}

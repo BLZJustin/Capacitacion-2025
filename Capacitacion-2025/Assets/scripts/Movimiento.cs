@@ -21,11 +21,10 @@ public class Movimiento : MonoBehaviour
     private void Update()
     {
         movimientoHorizontal = Input.GetAxisRaw("Horizontal") * velMovi;
-    }
-
-    private void FixedUpdate()
-    {
-        Mover(movimientoHorizontal * Time.fixedDeltaTime);
+        if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.Space))
+        {
+            salto = true;
+        }
     }
 
     private void Mover(float mover)
@@ -52,4 +51,36 @@ public class Movimiento : MonoBehaviour
         escala.x *= -1;
         transform.localScale = escala;
     }
+
+    [Header("Salto")]
+    [SerializeField] private float JumpForce;
+    [SerializeField] private LayerMask queEsSuelo;
+    [SerializeField] private Transform controladorSuelo;
+    [SerializeField] private Vector3 dimensionCaja;
+    [SerializeField] private bool enSuelo;
+    private bool salto = false;
+
+    public void Jump(bool saltar)
+    {
+        if (enSuelo && saltar)
+        {
+            enSuelo = false;
+            rb2D.AddForce(new Vector2(0f, JumpForce));
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        Mover(movimientoHorizontal * Time.fixedDeltaTime);
+        enSuelo = Physics2D.OverlapBox(controladorSuelo.position, dimensionCaja, 0f, queEsSuelo);
+        Jump(salto);
+        salto = false;
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.black;
+        Gizmos.DrawWireCube(controladorSuelo.position, dimensionCaja);
+    }
+
 }
